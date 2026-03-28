@@ -13,7 +13,7 @@ public class ChatController {
     private final SimpMessagingTemplate messagingTemplate;
 
     @MessageMapping("/send")
-    public void processMessage(@Payload Message msg) {
-        messagingTemplate.convertAndSendToUser(msg.recipient(), "/queue/messages", msg.content());
+    public void processMessage(@Payload String message) {
+        messagingTemplate.convertAndSend("/topic/messages", message);
     }
 }
